@@ -1,18 +1,67 @@
 package com.example.ejb.service;
 
-import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.example.ejb.model.Beneficio;
 import com.example.ejb.remote.BeneficioEjbRemote;
 
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.OptimisticLockException;
+import jakarta.persistence.PersistenceContext;
+
 @Stateless(name = "BeneficioEjbRemote")
 public class BeneficioEjbService implements BeneficioEjbRemote {
 
-    @PersistenceContext
+	@PersistenceContext
     private EntityManager em;
+
+    @Override
+    public Beneficio create(Beneficio beneficio) {
+        em.persist(beneficio);
+        return beneficio;
+    }
+
+    @Override
+    public Beneficio findById(Long id) {
+        return em.find(Beneficio.class, id);
+    }
+
+    @Override
+    public List<Beneficio> findAll() {
+        return em.createQuery("SELECT b FROM Beneficio b", Beneficio.class)
+                 .getResultList();
+    }
+
+
+    @Override
+    public Beneficio update(Beneficio beneficio) {
+        try {
+            return em.merge(beneficio);
+        } catch (OptimisticLockException e) {
+            throw new RuntimeException(
+                "Erro de concorrência: o registro foi alterado por outro usuário."
+            );
+        }
+    }
+
+    @Override
+    public void delete(Long id) {
+        Beneficio beneficio = em.find(Beneficio.class, id);
+
+        if (beneficio == null) {
+            throw new RuntimeException("Registro não encontrado para exclusão.");
+        }
+
+        try {
+            em.remove(beneficio);
+        } catch (OptimisticLockException e) {
+            throw new RuntimeException(
+                "Erro de concorrência: o registro foi alterado antes da exclusão."
+            );
+        }
+    }
 
     @Override
     public void transfer(Long fromId, Long toId, BigDecimal amount) {
@@ -26,14 +75,10 @@ public class BeneficioEjbService implements BeneficioEjbRemote {
         em.merge(from);
         em.merge(to);
     }
-    
-    @Override
-    public Beneficio findById(Long id) {
-        return em.find(Beneficio.class, id);
-    }
 
     @Override
     public String getHelloWorld() {
         return "Hello Stateful World";
     }
+    
 }
