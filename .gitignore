@@ -1,0 +1,5 @@
+ejb-module/.classpath
+ejb-module/.project
+ejb-module/target/
+ejb-module/build/
+ejb-module/.settings/

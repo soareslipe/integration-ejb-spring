@@ -1,16 +1,20 @@
-package com.example.ejb;
+package com.example.ejb.service;
 
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.math.BigDecimal;
 
-@Stateless
-public class BeneficioEjbService {
+import com.example.ejb.model.Beneficio;
+import com.example.ejb.remote.BeneficioEjbRemote;
+
+@Stateless(name = "BeneficioService")
+public class BeneficioEjbService implements BeneficioEjbRemote {
 
     @PersistenceContext
     private EntityManager em;
 
+    @Override
     public void transfer(Long fromId, Long toId, BigDecimal amount) {
         Beneficio from = em.find(Beneficio.class, fromId);
         Beneficio to   = em.find(Beneficio.class, toId);
@@ -21,5 +25,10 @@ public class BeneficioEjbService {
 
         em.merge(from);
         em.merge(to);
+    }
+
+    @Override
+    public String getHelloWorld() {
+        return "Hello Stateful World";
     }
 }
