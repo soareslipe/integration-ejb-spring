@@ -3,3 +3,9 @@ ejb-module/.project
 ejb-module/target/
 ejb-module/build/
 ejb-module/.settings/
+
+backend-module/.classpath
+backend-module/.project
+backend-module/target/
+backend-module/build/
+backend-module/.settings/
