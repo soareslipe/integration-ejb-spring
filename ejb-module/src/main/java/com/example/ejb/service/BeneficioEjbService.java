@@ -26,6 +26,11 @@ public class BeneficioEjbService implements BeneficioEjbRemote {
         em.merge(from);
         em.merge(to);
     }
+    
+    @Override
+    public Beneficio findById(Long id) {
+        return em.find(Beneficio.class, id);
+    }
 
     @Override
     public String getHelloWorld() {
