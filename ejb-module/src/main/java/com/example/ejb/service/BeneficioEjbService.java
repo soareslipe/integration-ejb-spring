@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import com.example.ejb.model.Beneficio;
 import com.example.ejb.remote.BeneficioEjbRemote;
 
-@Stateless(name = "BeneficioService")
+@Stateless(name = "BeneficioEjbRemote")
 public class BeneficioEjbService implements BeneficioEjbRemote {
 
     @PersistenceContext
