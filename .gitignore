@@ -10,3 +10,44 @@ backend-module/target/
 backend-module/build/
 backend-module/.settings/
 backend-module/.factorypath
+
+# Compiled output
+frontend/beneficio-app/dist
+frontend/beneficio-app/tmp
+frontend/beneficio-app/out-tsc
+frontend/beneficio-app/bazel-out
+
+# Node
+frontend/beneficio-app/node_modules
+frontend/beneficio-app/npm-debug.log
+frontend/beneficio-app/yarn-error.log
+
+# IDEs and editors
+frontend/beneficio-app/.idea/
+frontend/beneficio-app/.project
+frontend/beneficio-app/.classpath
+frontend/beneficio-app/.c9/
+frontend/beneficio-app/*.launch
+frontend/beneficio-app/.settings/
+frontend/beneficio-app/*.sublime-workspace
+
+# Visual Studio Code
+frontend/beneficio-app/.vscode/*
+!frontend/beneficio-app/.vscode/settings.json
+!frontend/beneficio-app/.vscode/tasks.json
+!frontend/beneficio-app/.vscode/launch.json
+!frontend/beneficio-app/.vscode/extensions.json
+frontend/beneficio-app/.history/*
+
+# Miscellaneous
+frontend/beneficio-app/.angular/cache
+frontend/beneficio-app/.sass-cache/
+frontend/beneficio-app/connect.lock
+frontend/beneficio-app/coverage
+frontend/beneficio-app/libpeerconnection.log
+frontend/beneficio-app/testem.log
+frontend/beneficio-app/typings
+
+# System files
+frontend/beneficio-app/.DS_Store
+frontend/beneficio-app/Thumbs.db
