@@ -9,4 +9,4 @@ backend-module/.project
 backend-module/target/
 backend-module/build/
 backend-module/.settings/
-backend-module/..factorypath
+backend-module/.factorypath
