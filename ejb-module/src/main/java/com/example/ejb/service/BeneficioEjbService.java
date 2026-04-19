@@ -8,6 +8,7 @@ import com.example.ejb.remote.BeneficioEjbRemote;
 
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.LockModeType;
 import jakarta.persistence.OptimisticLockException;
 import jakarta.persistence.PersistenceContext;
 
@@ -65,15 +66,44 @@ public class BeneficioEjbService implements BeneficioEjbRemote {
 
     @Override
     public void transfer(Long fromId, Long toId, BigDecimal amount) {
-        Beneficio from = em.find(Beneficio.class, fromId);
-        Beneficio to   = em.find(Beneficio.class, toId);
 
-        // BUG: sem validações, sem locking, pode gerar saldo negativo e lost update
-        from.setValor(from.getValor().subtract(amount));
-        to.setValor(to.getValor().add(amount));
+        if (fromId == null || toId == null) {
+            throw new IllegalArgumentException("IDs não podem ser nulos.");
+        }
 
-        em.merge(from);
-        em.merge(to);
+        if (fromId.equals(toId)) {
+            throw new IllegalArgumentException("Transferência para a mesma conta não é permitida.");
+        }
+
+        if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Valor deve ser maior que zero.");
+        }
+
+        try {
+            Beneficio from = em.find(Beneficio.class, fromId, LockModeType.PESSIMISTIC_WRITE);
+            Beneficio to   = em.find(Beneficio.class, toId, LockModeType.PESSIMISTIC_WRITE);
+
+            if (from == null || to == null) {
+                throw new RuntimeException("Conta não encontrada.");
+            }
+
+            if (Boolean.FALSE.equals(from.getAtivo()) || Boolean.FALSE.equals(to.getAtivo())) {
+                throw new RuntimeException("Conta inativa.");
+            }
+
+            if (from.getValor().compareTo(amount) < 0) {
+                throw new RuntimeException("Saldo insuficiente.");
+            }
+
+
+            from.setValor(from.getValor().subtract(amount));
+            to.setValor(to.getValor().add(amount));
+
+            em.flush();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro na transferência: " + e.getMessage(), e);
+        }
     }
 
     @Override
