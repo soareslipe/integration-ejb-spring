@@ -1,0 +1,276 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #eceff1;
+  box-sizing: border-box;
+}
+
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  padding: 0 12px 0 16px;
+  min-height: 56px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.toolbar-brand-icon {
+  margin-right: 12px;
+  opacity: 0.95;
+}
+
+.toolbar-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.toolbar-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.toolbar-tagline {
+  font-size: 0.72rem;
+  opacity: 0.88;
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.toolbar-spinner {
+  margin-right: 4px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.page {
+  display: grid;
+  gap: 20px;
+  padding: 20px clamp(14px, 3vw, 28px) 32px;
+  max-width: 1180px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .page {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-rows: auto auto;
+    align-items: start;
+    column-gap: 24px;
+    row-gap: 20px;
+  }
+
+  .card-lista {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  .card-form {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .card-transfer {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  padding-bottom: 4px;
+}
+
+.card-head mat-card-title {
+  margin-bottom: 4px;
+}
+
+.card-head-icon {
+  background: rgba(103, 58, 183, 0.12);
+  color: #5e35b1;
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.card-lista-body {
+  padding-top: 8px !important;
+}
+
+.table-shell {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.beneficios-table {
+  width: 100%;
+}
+
+.beneficios-table th.mat-mdc-header-cell {
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.beneficios-table td.mat-mdc-cell:last-of-type,
+.beneficios-table th.mat-mdc-header-cell:last-of-type {
+  width: 56px;
+  text-align: right;
+  padding-right: 4px;
+}
+
+.click-row {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.click-row:hover {
+  background: rgba(103, 58, 183, 0.06);
+}
+
+.click-row:active {
+  background: rgba(103, 58, 183, 0.1);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 16px;
+  text-align: center;
+  gap: 8px;
+}
+
+.empty-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: rgba(0, 0, 0, 0.28);
+}
+
+.empty-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.empty-hint {
+  margin: 0;
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.45);
+  max-width: 280px;
+  line-height: 1.4;
+}
+
+.busca-id {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+  margin-bottom: 8px;
+}
+
+.busca-id mat-form-field {
+  flex: 1 1 160px;
+  min-width: 140px;
+  max-width: 220px;
+  margin-bottom: 0;
+}
+
+.section-divider {
+  margin: 8px 0 16px;
+}
+
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.form-row {
+  display: grid;
+  gap: 12px;
+  align-items: start;
+}
+
+.form-row-2 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .form-row-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.stretch {
+  width: 100%;
+}
+
+.field-prefix {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 0.9rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.toggle-row {
+  padding: 12px 0 8px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 8px;
+}
+
+.actions button mat-icon.btn-leading-icon,
+.transfer-actions button mat-icon.btn-leading-icon {
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.transfer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  align-items: start;
+}
+
+@media (min-width: 480px) {
+  .transfer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .transfer-actions {
+    grid-column: 1 / -1;
+  }
+}
+
+.transfer-actions {
+  display: flex;
+  align-items: center;
+  padding-top: 8px;
+}

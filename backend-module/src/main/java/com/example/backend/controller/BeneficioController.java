@@ -29,10 +29,11 @@ public class BeneficioController {
     }
 
     @GetMapping
-    public String hello() {
-        return service.getHelloWorld();
+    public ResponseEntity<List<Beneficio>> listar() {
+    	List<Beneficio> lista = service.findAll();
+    	return ResponseEntity.ok(lista);
     }
-
+    
     @PostMapping
     public ResponseEntity<Beneficio> criar(@RequestBody Beneficio beneficio) {
         Beneficio criado = service.create(beneficio);
@@ -50,11 +51,6 @@ public class BeneficioController {
         return ResponseEntity.ok(ben);
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Beneficio>> listar() {
-        List<Beneficio> lista = service.findAll();
-        return ResponseEntity.ok(lista);
-    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Beneficio beneficio) {
