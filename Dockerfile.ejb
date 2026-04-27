@@ -1,0 +1,13 @@
+FROM quay.io/wildfly/wildfly:latest
+
+WORKDIR /opt/jboss/wildfly/standalone/deployments
+
+COPY ejb-module/target/*.jar app.jar
+
+RUN touch app.jar.dodeploy
+
+RUN /opt/jboss/wildfly/bin/add-user.sh -a -u admin  -p admin123 --silent
+
+EXPOSE 8080 9990
+
+CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b=0.0.0.0", "-bmanagement=0.0.0.0"]

@@ -14,7 +14,7 @@ public class EJBBeans {
     public BeneficioEjbRemote beneficioService(Context context) throws Exception {
 
         return (BeneficioEjbRemote) context.lookup(
-            "ejb:/ejb-module-1.2-SNAPSHOT/BeneficioEjbRemote!com.example.ejb.remote.BeneficioEjbRemote"
+            "ejb:/app/BeneficioEjbRemote!com.example.ejb.remote.BeneficioEjbRemote"
         );
     }
 

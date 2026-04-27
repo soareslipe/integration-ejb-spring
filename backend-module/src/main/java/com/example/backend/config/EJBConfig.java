@@ -17,9 +17,10 @@ public class EJBConfig {
 
         props.put(Context.INITIAL_CONTEXT_FACTORY,
                 "org.wildfly.naming.client.WildFlyInitialContextFactory");
+        props.put(Context.SECURITY_PRINCIPAL, "admin");
+        props.put(Context.SECURITY_CREDENTIALS, "admin123");
 
-        props.put(Context.PROVIDER_URL,
-                "http-remoting://localhost:8080");
+        props.put(Context.PROVIDER_URL, "http-remoting://host.docker.internal:8080");
 
         props.put("jboss.naming.client.ejb.context", true);
 
